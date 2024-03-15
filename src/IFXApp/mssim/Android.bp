@@ -1,0 +1,12 @@
+cc_prebuilt_binary {
+    name: "tpm2-simulator",
+    arch: {
+        x86: {
+            srcs: ["x86_64/bin/tpm2-simulator"],
+        },
+        x86_64: {
+            srcs: ["x86_64/bin/tpm2-simulator"],
+        },
+    },
+    shared_libs: ["libossl3-crypto"],
+}

@@ -1,0 +1,19 @@
+cc_prebuilt_library_shared {
+    name: "libtss2-ossl3-provider",
+    arch: {
+        x86: {
+            srcs: ["x86_64/libtss2-ossl3-provider.so"],
+        },
+        x86_64: {
+            srcs: ["x86_64/libtss2-ossl3-provider.so"],
+        },
+    },
+    shared_libs: [
+        "libossl3-crypto",
+        "libtss2-esys",
+        "libtss2-mu",
+        "libtss2-rc",
+        "libtss2-tctildr",
+    ],
+    allow_undefined_symbols: true,
+}

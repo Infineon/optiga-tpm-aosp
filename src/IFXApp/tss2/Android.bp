@@ -1,0 +1,84 @@
+cc_prebuilt_library_shared {
+    name: "libtss2-esys",
+    arch: {
+        x86: {
+            srcs: ["x86_64/libtss2-esys.so"],
+        },
+        x86_64: {
+            srcs: ["x86_64/libtss2-esys.so"],
+        },
+    },
+    export_include_dirs: ["include"],
+    shared_libs: [
+        "libossl3-crypto",
+        "libtss2-mu",
+        "libtss2-sys"
+    ],
+}
+
+cc_prebuilt_library_shared {
+    name: "libtss2-sys",
+    arch: {
+        x86: {
+            srcs: ["x86_64/libtss2-sys.so"],
+        },
+        x86_64: {
+            srcs: ["x86_64/libtss2-sys.so"],
+        },
+    },
+    export_include_dirs: ["include"],
+    shared_libs: ["libtss2-mu"],
+}
+
+cc_prebuilt_library_shared {
+    name: "libtss2-mu",
+    arch: {
+        x86: {
+            srcs: ["x86_64/libtss2-mu.so"],
+        },
+        x86_64: {
+            srcs: ["x86_64/libtss2-mu.so"],
+        },
+    },
+    export_include_dirs: ["include"],
+}
+
+cc_prebuilt_library_shared {
+    name: "libtss2-rc",
+    arch: {
+        x86: {
+            srcs: ["x86_64/libtss2-rc.so"],
+        },
+        x86_64: {
+            srcs: ["x86_64/libtss2-rc.so"],
+        },
+    },
+    export_include_dirs: ["include"],
+}
+
+cc_prebuilt_library_shared {
+    name: "libtss2-tctildr",
+    arch: {
+        x86: {
+            srcs: ["x86_64/libtss2-tctildr.so"],
+        },
+        x86_64: {
+            srcs: ["x86_64/libtss2-tctildr.so"],
+        },
+    },
+    export_include_dirs: ["include"],
+}
+
+cc_prebuilt_library_shared {
+    name: "libtss2-tcti-mssim",
+    arch: {
+        x86: {
+            srcs: ["x86_64/libtss2-tcti-mssim.so"],
+        },
+        x86_64: {
+            srcs: ["x86_64/libtss2-tcti-mssim.so"],
+        },
+    },
+    export_include_dirs: ["include"],
+    shared_libs: ["libtss2-mu"],
+}

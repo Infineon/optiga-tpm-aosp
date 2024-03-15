@@ -1,0 +1,12 @@
+cc_prebuilt_library_shared {
+    name: "libossl3-crypto",
+    arch: {
+        x86: {
+            srcs: ["x86_64/libossl3-crypto.so"],
+        },
+        x86_64: {
+            srcs: ["x86_64/libossl3-crypto.so"],
+        },
+    },
+    export_include_dirs: ["include"],
+}

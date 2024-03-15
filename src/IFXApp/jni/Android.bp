@@ -1,0 +1,21 @@
+cc_library {
+    name: "libifx_jni",
+    cflags: [
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+    ],
+    srcs: [
+        "lib.c",
+    ],
+    /* Verify if jni_headers are necessary? */
+    header_libs: ["jni_headers"],
+    shared_libs: [
+        "liblog",
+        "libossl3-crypto",
+        "libtss2-esys",
+        "libtss2-rc",
+        "libtss2-tctildr",
+        "libtss2-tcti-mssim",
+    ],
+}
