@@ -278,7 +278,10 @@ $ export PATH=${HOME}/android-ndk-r26b/toolchains/llvm/prebuilt/linux-x86_64/bin
 Download the project:
 >  Support for OpenSSL 3 is not officially provided yet in the [ms-tpm-20-ref](https://github.com/microsoft/ms-tpm-20-ref) project. Official support for OpenSSL 3 can be tracked through the project's [pull request #93](https://github.com/microsoft/ms-tpm-20-ref/pull/93). This is a temporary workaround taken from the pull request.
 ```all
-$ git clone https://github.com/fferino-fungible/ms-tpm-20-ref -b user/fabrice/openssl3 --depth=1 ~/ms-tpm-20-ref
+$ git clone https://github.com/microsoft/ms-tpm-20-ref ~/ms-tpm-20-ref
+$ cd ~/ms-tpm-20-ref
+$ git checkout e9fc7b89d865536c46deb63f9c7d0121a3ded49c
+$ git apply ~/optiga-tpm-aosp/patches/ms-tpm-20-ref.patch
 ```
 
 Disabling the FILE_BACKED_NV feature is not possible through the use of CFLAGS; therefore, the code must be modified:

@@ -1,0 +1,50 @@
+From f4a1973d56f45ba87aafe07109ff2beca06b1f1b Mon Sep 17 00:00:00 2001
+From: "wenxin.leong" <wenxin.leong@infineon.com>
+Date: Mon, 25 Mar 2024 11:44:06 +0800
+Subject: [PATCH] A temporary workaround to support OSSL3
+
+The patch was taken from https://github.com/microsoft/ms-tpm-20-ref, PR #93
+
+Signed-off-by: wenxin.leong <wenxin.leong@infineon.com>
+---
+ TPMCmd/configure.ac                     | 5 ++++-
+ TPMCmd/tpm/include/Ossl/TpmToOsslMath.h | 4 ++--
+ 2 files changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/TPMCmd/configure.ac b/TPMCmd/configure.ac
+index 58a74b4..4ff3253 100644
+--- a/TPMCmd/configure.ac
++++ b/TPMCmd/configure.ac
+@@ -51,7 +51,10 @@ AC_ARG_ENABLE(usedeviceid,
+     AS_HELP_STRING([--enable-usedeviceid],
+     [tpm simulator get seeds derived from hardware parameters. Seeds are not derived from secure hardware source.]))
+ 
+-PKG_CHECK_MODULES([LIBCRYPTO], [libcrypto])
++PKG_CHECK_MODULES([LIBCRYPTO], [libcrypto >= 3.0],
++	[AC_DEFINE([OPENSSL_API_COMPAT], [10101])],
++	[PKG_CHECK_MODULES([LIBCRYPTO], [libcrypto])])
++
+ AS_IF([test "x$enable_usedeviceid" = "xyes"], [
+     PKG_CHECK_MODULES([LIBUDEV], [libudev])
+     [ADDITIONAL_LIBS="-ludev"]
+diff --git a/TPMCmd/tpm/include/Ossl/TpmToOsslMath.h b/TPMCmd/tpm/include/Ossl/TpmToOsslMath.h
+index ddaded4..953faf0 100644
+--- a/TPMCmd/tpm/include/Ossl/TpmToOsslMath.h
++++ b/TPMCmd/tpm/include/Ossl/TpmToOsslMath.h
+@@ -49,11 +49,11 @@
+ 
+ #define SYMMETRIC_ALIGNMENT RADIX_BYTES
+ 
+-#if OPENSSL_VERSION_NUMBER >= 0x10200000L
++#if OPENSSL_VERSION_NUMBER >= 0x30200000L
+ // Check the bignum_st definition in crypto/bn/bn_lcl.h and either update the
+ // version check or provide the new definition for this version.
+ #  error Untested OpenSSL version
+-#elif OPENSSL_VERSION_NUMBER >= 0x10100000L
++#elif OPENSSL_VERSION_NUMBER >= 0x30000000L
+ // from crypto/bn/bn_lcl.h
+ struct bignum_st
+ {
+-- 
+2.34.1
+
