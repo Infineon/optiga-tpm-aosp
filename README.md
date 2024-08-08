@@ -109,6 +109,7 @@ $ du -sm ~/aosp/out
 ```exclude
 $ cd ~/aosp
 $ source build/envsetup.sh
+$ lunch sdk_phone_x86_64
 $ emulator -verbose -gpu swiftshader -selinux permissive -logcat *:v
 ```
 
@@ -118,6 +119,7 @@ Start the emulator in headless mode:
 ```all
 $ cd ~/aosp
 $ source build/envsetup.sh
+$ lunch sdk_phone_x86_64
 $ export ANDROID_EMULATOR_WAIT_TIME_BEFORE_KILL=1
 
 $ emulator -selinux permissive -no-window -no-audio &
@@ -392,6 +394,7 @@ Start the emulator in headless mode:
 ```all
 $ cd ~/aosp
 $ source build/envsetup.sh
+$ lunch sdk_phone_x86_64
 $ export ANDROID_EMULATOR_WAIT_TIME_BEFORE_KILL=1
 
 $ emulator -selinux permissive -no-window -no-audio &
